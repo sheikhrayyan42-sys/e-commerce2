@@ -1,8 +1,20 @@
 /*
  * RAKH - Shop and Product Page Stylesheet
  * This file contains specific CSS rules for the product page layout,
- * image gallery, and product details sections.
+ * image gallery, and product details sections with added animations.
  */
+
+/* ================== General Animations ================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* ================== Product Page Layout ================== */
 
@@ -39,11 +51,11 @@
     width: 100%;
     height: auto;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .main-image:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .thumbnail-images {
@@ -60,12 +72,13 @@
     border-radius: 0.25rem;
     border: 1px solid transparent;
     cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: all 0.2s ease-in-out;
 }
 
 .thumbnail-image:hover,
 .thumbnail-image.active {
     border-color: #1a1a1a;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     transform: scale(1.05);
 }
 
@@ -82,12 +95,14 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 .product-info-price {
     font-size: 1.5rem;
     color: #4a4a4a;
     margin-top: 0.5rem;
+    animation: fadeIn 0.8s ease-in-out 0.1s both;
 }
 
 .product-info-description {
@@ -95,6 +110,7 @@
     font-size: 1rem;
     color: #333;
     line-height: 1.6;
+    animation: fadeIn 0.8s ease-in-out 0.2s both;
 }
 
 
@@ -111,17 +127,20 @@
     border: 1px solid #ccc;
     border-radius: 0.25rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease-in-out;
 }
 
 .size-option:hover {
     background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .size-option.selected {
     background-color: #1a1a1a;
     color: #ffffff;
     border-color: #1a1a1a;
+    transform: scale(1.05);
 }
 
 .quantity-selector {
@@ -139,6 +158,15 @@
     cursor: pointer;
     border-radius: 0.25rem;
     font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.quantity-btn:hover {
+    background-color: #e5e5e5;
+}
+
+.quantity-btn:active {
+    transform: scale(0.95);
 }
 
 .quantity-input {
@@ -151,6 +179,7 @@
     -webkit-appearance: none;
     margin: 0;
 }
+
 
 /* ================== Accordion/Dropdown Sections ================== */
 
@@ -188,4 +217,25 @@
 /* Rotate the icon when the accordion is open */
 .accordion-header.open .accordion-icon {
     transform: rotate(180deg);
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
