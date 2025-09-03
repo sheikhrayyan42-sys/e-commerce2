@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - RAKH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header (simplified for checkout) -->
+    <header class="py-6 border-b border-gray-200 bg-white shadow-sm">
+        <div class="container mx-auto px-4 text-center">
+            <a href="index.html" class="text-2xl font-bold tracking-widest uppercase text-gray-800">RAKH</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-10 md:py-16">
+        <div class="lg:flex lg:space-x-12">
+            <!-- Checkout Form Section -->
+            <div class="lg:w-3/5 bg-white p-6 md:p-8 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-6">Contact and shipping information</h2>
+                
+                <form id="checkout-form">
+                    <!-- Contact Information -->
+                    <div class="mb-6">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email address</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-black focus:border-black outline-none transition" required>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="marketing" name="marketing" class="w-4 h-4 text-black rounded focus:ring-black">
+                            <label for="marketing" class="ml-2 text-sm text-gray-500">Email me with news and offers</label>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">Shipping address</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First name</label>
+                                <input type="text" id="first-name" name="first-name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-black focus:border-black outline-none transition" required>
+                            </div>
+                            <div>
+                                <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last name</label>
+                                <input type="text" id="last-name" name="last-name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-black focus:border-black outline-none transition" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                            <input type="text" id="address" name="address" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-black focus:border-black outline-none transition" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                            <input type="text" id="city" name="city" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-black focus:border-black outline-none transition" required>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="province" class="block text-sm font-medium text-gray-700 mb-1">Province</label>
+                                <input type="text" id="province" name="province" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-black focus:border-black outline-none transition" required>
+                            </div>
+                            <div>
+                                <label for="postal-code" class="block text-sm font-medium text-gray-700 mb-1">Postal code</label>
+                                <input type="text" id="postal-code" name="postal-code" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-black focus:border-black outline-none transition" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-black text-white py-3 font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition-colors duration-300 mt-6">
+                        Continue to Shipping
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order Summary Section -->
+            <div class="lg:w-2/5 mt-8 lg:mt-0">
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold mb-6">Order summary</h2>
+                    
+                    <!-- Product List -->
+                    <div class="space-y-6 mb-6 border-b border-gray-200 pb-6">
+                        <!-- Product 1 -->
+                        <div class="flex items-center space-x-4">
+                            <div class="relative">
+                                <img src="https://placehold.co/80x100/e0e0e0/333333?text=Tee" alt="Signature Tee" class="w-20 h-24 rounded-md object-cover">
+                                <span class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center text-xs bg-gray-700 text-white rounded-full">1</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-lg">Signature Tee - Black</h3>
+                                <p class="text-gray-500 text-sm">Size: M</p>
+                            </div>
+                            <span class="font-medium">PKR 3,499.00</span>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="flex items-center space-x-4">
+                            <div class="relative">
+                                <img src="https://placehold.co/80x100/f0f0f0/333333?text=Polo" alt="Essential Polo" class="w-20 h-24 rounded-md object-cover">
+                                <span class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center text-xs bg-gray-700 text-white rounded-full">2</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-lg">Essential Polo - White</h3>
+                                <p class="text-gray-500 text-sm">Size: L</p>
+                            </div>
+                            <span class="font-medium">PKR 8,398.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Discount Code -->
+                    <div class="mb-6">
+                        <label for="discount" class="block text-sm font-medium text-gray-700 mb-2">Discount code</label>
+                        <div class="flex">
+                            <input type="text" id="discount" name="discount" class="flex-1 px-4 py-3 border border-gray-300 rounded-l-md focus:ring-black focus:border-black outline-none transition">
+                            <button type="button" class="bg-gray-200 text-gray-700 px-4 py-3 rounded-r-md font-semibold hover:bg-gray-300 transition-colors">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Totals -->
+                    <div class="space-y-3 font-medium border-t border-gray-200 pt-6">
+                        <div class="flex justify-between items-center">
+                            <span>Subtotal</span>
+                            <span>PKR 11,897.00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Shipping</span>
+                            <span class="text-green-600">Free</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xl font-bold">
+                            <span>Total</span>
+                            <span>PKR 11,897.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-white text-gray-500 text-center py-6 border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <p class="text-sm">Need help? <a href="#" class="text-gray-800 hover:underline font-semibold">Contact us</a></p>
+            <p class="mt-2 text-xs">&copy; 2025 RAKH. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Simple Message Modal -->
+    <div id="message-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-sm">
+            <h3 class="text-2xl font-bold mb-4">Form Submitted</h3>
+            <p class="text-gray-600 mb-6">Thank you for submitting your details. This is a mock checkout, and no actual order has been placed.</p>
+            <button id="close-modal-button" class="bg-black text-white px-6 py-2 rounded-md font-semibold hover:bg-gray-800 transition-colors">OK</button>
+        </div>
+    </div>
+
+    <script>
+        const checkoutForm = document.getElementById('checkout-form');
+        const messageModal = document.getElementById('message-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+
+        checkoutForm.addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            
+            // Show the message modal
+            messageModal.classList.remove('hidden');
+        });
+
+        closeModalButton.addEventListener('click', function() {
+            // Hide the message modal
+            messageModal.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

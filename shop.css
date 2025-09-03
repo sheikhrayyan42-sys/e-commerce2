@@ -1,0 +1,191 @@
+/*
+ * RAKH - Shop and Product Page Stylesheet
+ * This file contains specific CSS rules for the product page layout,
+ * image gallery, and product details sections.
+ */
+
+/* ================== Product Page Layout ================== */
+
+.product-page-container {
+    padding: 2rem 1rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .product-page-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        padding: 4rem 2rem;
+    }
+}
+
+
+/* ================== Product Image Gallery ================== */
+
+.product-image-gallery {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-image-container {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail-images {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.thumbnail-image {
+    width: 6rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.thumbnail-image:hover,
+.thumbnail-image.active {
+    border-color: #1a1a1a;
+    transform: scale(1.05);
+}
+
+
+/* ================== Product Information ================== */
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.product-info-price {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    margin-top: 0.5rem;
+}
+
+.product-info-description {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+/* ================== Size and Quantity Selectors ================== */
+
+.size-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.size-option {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.size-option:hover {
+    background-color: #f0f0f0;
+}
+
+.size-option.selected {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.quantity-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-weight: 600;
+}
+
+.quantity-input {
+    width: 3rem;
+    text-align: center;
+    -moz-appearance: textfield; /* Firefox */
+}
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ================== Accordion/Dropdown Sections ================== */
+
+.accordion-section {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1.5rem 0;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1.125rem;
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+}
+
+.accordion-content {
+    margin-top: 1rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.accordion-content.open {
+    max-height: 500px; /* A value large enough to contain the content */
+}
+
+/* Rotate the icon when the accordion is open */
+.accordion-header.open .accordion-icon {
+    transform: rotate(180deg);
+}
