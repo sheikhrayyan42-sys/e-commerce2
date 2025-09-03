@@ -4,6 +4,18 @@
  * such as buttons, cards, and form elements.
  */
 
+/* ================== General Animations ================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ================== Buttons ================== */
 
 /* Base style for all buttons on the site */
@@ -15,8 +27,9 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-radius: 0.375rem; /* rounded-md in Tailwind */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 9999px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* Primary button style, used for call-to-actions */
@@ -27,7 +40,14 @@
 }
 
 .btn-primary:hover {
-    background-color: #333333;
+    background-color: #000000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Secondary button style, often used for outlines or lighter actions */
@@ -39,6 +59,13 @@
 
 .btn-secondary:hover {
     background-color: #f7f7f7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary:active {
+    transform: translateY(1px);
+    box-shadow: none;
 }
 
 
@@ -48,6 +75,13 @@
 .product-card {
     display: block;
     text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Image container within a product card, with a hover effect */
@@ -61,11 +95,11 @@
     width: 100%;
     height: auto;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .product-card:hover .product-card-img {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 /* Product details section below the image */
@@ -95,12 +129,14 @@
     width: 100%;
     padding: 0.5rem 1rem;
     border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    transition: border-color 0.3s ease;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
 }
 
 .form-input:focus {
     border-color: #1a1a1a;
+    box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.2);
     outline: none;
 }
 
@@ -109,12 +145,15 @@
     background-color: #ffffff;
     color: #1a1a1a;
     padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    border-radius: 9999px;
     font-weight: 600;
     text-transform: uppercase;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .newsletter-btn:hover {
     background-color: #e5e7eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
