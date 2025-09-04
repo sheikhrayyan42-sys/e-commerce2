@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleek Modern Sneaker</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+    <!-- Main container for the product page -->
+    <div class="container mx-auto p-4 sm:p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-center space-y-12 lg:space-y-0 lg:space-x-12">
+
+        <!-- Product Image Section -->
+        <div class="lg:w-1/2 flex justify-center">
+            <img src="https://placehold.co/600x600/F0F0F0/555555?text=Product+Image" alt="Sleek Modern Sneaker" class="rounded-2xl shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 w-full max-w-lg">
+        </div>
+
+        <!-- Product Details Section -->
+        <div class="lg:w-1/2 bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 flex flex-col space-y-6">
+
+            <!-- Product Title -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900">
+                Sleek Modern Sneaker
+            </h1>
+            <!-- Product Price -->
+            <p class="text-3xl font-bold text-gray-700">
+                $129.99
+            </p>
+
+            <!-- Product Description -->
+            <div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-600">Description</h3>
+                <p class="text-base text-gray-600 leading-relaxed">
+                    Step into the future with our Sleek Modern Sneaker. Designed for both comfort and style,
+                    this sneaker features a lightweight, breathable material and a cushioned sole that provides all-day support.
+                    Its minimalist design and bold color options make it the perfect addition to any wardrobe,
+                    whether for a casual outing or a quick jog.
+                </p>
+            </div>
+
+            <!-- Product Options (e.g., Size, Color) -->
+            <div class="space-y-4">
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-600">Size</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200 cursor-pointer">7</span>
+                        <span class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200 cursor-pointer">8</span>
+                        <span class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200 cursor-pointer">9</span>
+                        <span class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200 cursor-pointer">10</span>
+                        <span class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200 cursor-pointer">11</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- "Add to Cart" Button -->
+            <button id="addToCartBtn" class="w-full bg-blue-600 text-white font-bold py-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="messageModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full shadow-xl text-center space-y-4">
+            <h3 class="text-xl font-bold">Item Added!</h3>
+            <p>Your Sleek Modern Sneaker has been added to your cart.</p>
+            <button onclick="closeModal()" class="bg-blue-600 text-white font-medium py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Get the button and modal elements
+        const addToCartBtn = document.getElementById('addToCartBtn');
+        const messageModal = document.getElementById('messageModal');
+
+        // Function to show the modal instead of an alert
+        function showModal() {
+            messageModal.classList.remove('hidden');
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            messageModal.classList.add('hidden');
+        }
+
+        // Add a click event listener to the "Add to Cart" button
+        addToCartBtn.addEventListener('click', () => {
+            showModal();
+        });
+    </script>
+</body>
+</html>
