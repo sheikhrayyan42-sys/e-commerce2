@@ -19,7 +19,32 @@
 <body class="bg-gray-100 text-gray-800 antialiased">
     <!-- Main container for the product page -->
     <div class="container mx-auto p-4 sm:p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-center space-y-12 lg:space-y-0 lg:space-x-12">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
 
+                <!-- Logo -->
+                <div class="flex-1 md:flex-none md:flex-shrink-0 text-center md:text-left">
+                    <a href="index.html" class="text-2xl font-bold tracking-widest uppercase">How To Hack Nasa</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex flex-grow justify-center">
+                    <ul class="flex items-center space-x-8">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="shop1.html" class="nav-link">Shop now</a></li>
+                        <li><a href="about1.html" class="nav-link">About us</a></li>
+                        <li><a href="getintouch.html" class="nav-link">Get In Touch</a></li>
+                        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    </ul>
+                </nav>
         <!-- Product Image Section -->
         <div class="lg:w-1/2 flex justify-center">
             <img src="https://placehold.co/600x600/F0F0F0/555555?text=Product+Image" alt="Sleek Modern Sneaker" class="rounded-2xl shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 w-full max-w-lg">
@@ -100,4 +125,5 @@
     </script>
 </body>
 </html>
+
 
