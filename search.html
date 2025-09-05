@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiteScan Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <!-- Main Container -->
+    <div class="w-full max-w-4xl">
+        <!-- Header with Search Icon -->
+        <header class="bg-white shadow-lg rounded-xl p-4 flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Your Website Name</h1>
+            <button id="search-icon" class="p-2 text-gray-600 hover:text-gray-900 focus:outline-none transition-transform transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- Search Engine Container (Initially Hidden) -->
+        <div id="search-container" class="bg-white shadow-lg rounded-xl p-6 hidden transition-all duration-300 ease-in-out">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">SiteScan Search</h2>
+            <form id="search-form" class="flex flex-col sm:flex-row gap-4">
+                <input
+                    type="search"
+                    id="search-input"
+                    name="q"
+                    placeholder="Search your website..."
+                    class="flex-grow p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
+                    required
+                >
+                <button
+                    type="submit"
+                    class="bg-blue-600 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                    Search
+                </button>
+            </form>
+            <div id="result-message" class="mt-4 text-center text-gray-600">
+                Results will open in a new tab using Google Search.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchIcon = document.getElementById('search-icon');
+            const searchContainer = document.getElementById('search-container');
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+            const websiteDomain = "sheikhrayyan42-sys.github.io"; // THIS IS NOW SET TO YOUR DOMAIN
+
+            // Toggle the search container visibility
+            searchIcon.addEventListener('click', () => {
+                const isHidden = searchContainer.classList.contains('hidden');
+                if (isHidden) {
+                    searchContainer.classList.remove('hidden');
+                    searchContainer.classList.add('flex', 'flex-col');
+                    setTimeout(() => searchInput.focus(), 100);
+                } else {
+                    searchContainer.classList.add('hidden');
+                    searchContainer.classList.remove('flex', 'flex-col');
+                }
+            });
+
+            // Handle the form submission
+            searchForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query) {
+                    const searchUrl = `https://www.google.com/search?q=site:${websiteDomain}+${encodeURIComponent(query)}`;
+                    window.open(searchUrl, '_blank');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

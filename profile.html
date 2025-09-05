@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Icon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- User Profile Icon Component -->
+    <div class="flex items-center space-x-2 p-3 bg-white rounded-xl shadow-lg cursor-pointer hover:bg-gray-50 transition-colors">
+        <!-- SVG for the profile icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-blue-600">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+        <span class="text-lg text-gray-800 font-medium">Account</span>
+    </div>
+
+    <!-- The Modal/Popup for Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 text-center">Login to your account</h2>
+            <form id="login-form">
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">Log In</button>
+            </form>
+            <div class="relative flex items-center py-4">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="flex-shrink mx-4 text-gray-500 text-sm">Or continue with</span>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>
+            <button id="google-login-button" class="w-full bg-white text-gray-800 py-2 rounded-lg font-medium border border-gray-300 shadow-md hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M43.611 20.083H42V20H24V28H36.444C35.539 31.794 32.835 34.621 29.167 36.333V41.667C34.509 39.954 39.068 35.53 41.748 29.833L43.611 20.083Z" fill="#4285F4"/>
+                    <path d="M24 44C30.667 44 36.444 41.778 40.833 37.833L36.333 33.333C33.472 35.333 29.167 36.667 24 36.667C19.833 36.667 16.167 34.667 13.528 31.889L8.472 36.889C11.889 40.556 17.556 42.667 24 42.667V44Z" fill="#34A853"/>
+                    <path d="M10.167 28.167C9.333 25.5 9.333 22.5 10.167 19.833L1.583 14.5C0.5 17.833 0 20.5 0 24C0 27.5 0.5 30.167 1.583 33.5L10.167 28.167Z" fill="#FBBC04"/>
+                    <path d="M24 11.333C27.167 11.333 30.167 12.667 32.5 15L38.333 9.167C34.333 5.333 29.167 3.333 24 3.333C17.5 3.333 11.833 5.444 8.5 9.167L13.556 14.167C16.167 11.444 19.833 9.333 24 9.333V11.333Z" fill="#EA4335"/>
+                </svg>
+                <span>Sign in with Google</span>
+            </button>
+            <p id="auth-status" class="mt-4 text-center text-sm text-gray-600"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // IMPORTANT: In a real-world scenario, your Firebase config would be set up here.
+        // For this example, we'll use placeholder values. You will get these from your Firebase project.
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileIcon = document.querySelector('.flex.items-center');
+            const loginModal = document.getElementById('login-modal');
+            const closeButton = document.querySelector('.close-button');
+            const loginForm = document.getElementById('login-form');
+            const googleLoginButton = document.getElementById('google-login-button');
+            const authStatus = document.getElementById('auth-status');
+
+            // Open the login modal when the profile icon is clicked
+            profileIcon.addEventListener('click', () => {
+                loginModal.style.display = 'flex';
+            });
+
+            // Close the login modal
+            closeButton.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+                authStatus.textContent = ''; // Clear status message on close
+            });
+
+            // Close the modal if the user clicks outside of it
+            window.addEventListener('click', (event) => {
+                if (event.target === loginModal) {
+                    loginModal.style.display = 'none';
+                    authStatus.textContent = ''; // Clear status message on close
+                }
+            });
+
+            // Handle the email/password login form submission
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const email = loginForm.email.value;
+                const password = loginForm.password.value;
+                authStatus.textContent = "Logging in...";
+
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+                    authStatus.textContent = `Success! Welcome, ${user.email}.`;
+                    console.log("Logged in user:", user);
+                    
+                    // You would typically redirect or update the UI here.
+
+                } catch (error) {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Login failed:", errorCode, errorMessage);
+                    authStatus.textContent = `Error: ${errorMessage}`;
+                }
+            });
+
+            // Handle the Google Sign-In button click
+            googleLoginButton.addEventListener('click', async () => {
+                authStatus.textContent = "Signing in with Google...";
+                try {
+                    const result = await signInWithPopup(auth, googleProvider);
+                    const user = result.user;
+                    authStatus.textContent = `Success! Welcome, ${user.displayName}.`;
+                    console.log("Logged in user with Google:", user);
+                    
+                    // You would typically redirect or update the UI here.
+
+                } catch (error) {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Google login failed:", errorCode, errorMessage);
+                    authStatus.textContent = `Error: ${errorMessage}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
